@@ -79,13 +79,19 @@
 
 
 
-<meta property="og:type" content="website">
+<meta name="description" content="回流（Reflow）重绘（Repaint）什么时候会触发回流或重绘呢？当我们对dom 进行修改当时候会引发它外观（样式）上的改变时，就会触发回流或重绘。这个过程本质上还是因为我们对 DOM 的修改触发了渲染树（Render Tree）的变化所导致的 我们回顾一下浏览器渲染页面的流程1.根据 HTML 结构生成 DOM 树2.根据 CSS 生成 CSSOM3.将 DOM 和 CSSOM 整合形成 R">
+<meta property="og:type" content="article">
 <meta property="og:title" content="清风寮">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/03/20/回流和重载/index.html">
 <meta property="og:site_name" content="清风寮">
+<meta property="og:description" content="回流（Reflow）重绘（Repaint）什么时候会触发回流或重绘呢？当我们对dom 进行修改当时候会引发它外观（样式）上的改变时，就会触发回流或重绘。这个过程本质上还是因为我们对 DOM 的修改触发了渲染树（Render Tree）的变化所导致的 我们回顾一下浏览器渲染页面的流程1.根据 HTML 结构生成 DOM 树2.根据 CSS 生成 CSSOM3.将 DOM 和 CSSOM 整合形成 R">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/bVbnIiw">
+<meta property="og:updated_time" content="2019-03-20T01:06:21.187Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="清风寮">
+<meta name="twitter:description" content="回流（Reflow）重绘（Repaint）什么时候会触发回流或重绘呢？当我们对dom 进行修改当时候会引发它外观（样式）上的改变时，就会触发回流或重绘。这个过程本质上还是因为我们对 DOM 的修改触发了渲染树（Render Tree）的变化所导致的 我们回顾一下浏览器渲染页面的流程1.根据 HTML 结构生成 DOM 树2.根据 CSS 生成 CSSOM3.将 DOM 和 CSSOM 整合形成 R">
+<meta name="twitter:image" content="http://yoursite.com/img/bVbnIiw">
 
 
 
@@ -115,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/20/回流和重载/">
 
 
 
 
 
-  <title>清风寮</title>
+  <title> | 清风寮</title>
   
 
 
@@ -140,8 +146,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,9 +219,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -246,9 +251,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/20/回流和重载/" itemprop="url">Untitled</a></h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -329,9 +332,7 @@
       
 
       
-        
-          
-            <h3 id="回流（Reflow）重绘（Repaint）"><a href="#回流（Reflow）重绘（Repaint）" class="headerlink" title="回流（Reflow）重绘（Repaint）"></a>回流（Reflow）重绘（Repaint）</h3><h4 id="什么时候会触发回流或重绘呢？"><a href="#什么时候会触发回流或重绘呢？" class="headerlink" title="什么时候会触发回流或重绘呢？"></a>什么时候会触发回流或重绘呢？</h4><p>当我们对dom 进行修改当时候会引发它外观（样式）上的改变时，就会触发回流或重绘。<br>这个过程本质上还是因为我们对 DOM 的修改触发了渲染树（Render Tree）的变化所导致的<br><img src="/img/bVbnIiw" alt="clipboard.png"></p>
+        <h3 id="回流（Reflow）重绘（Repaint）"><a href="#回流（Reflow）重绘（Repaint）" class="headerlink" title="回流（Reflow）重绘（Repaint）"></a>回流（Reflow）重绘（Repaint）</h3><h4 id="什么时候会触发回流或重绘呢？"><a href="#什么时候会触发回流或重绘呢？" class="headerlink" title="什么时候会触发回流或重绘呢？"></a>什么时候会触发回流或重绘呢？</h4><p>当我们对dom 进行修改当时候会引发它外观（样式）上的改变时，就会触发回流或重绘。<br>这个过程本质上还是因为我们对 DOM 的修改触发了渲染树（Render Tree）的变化所导致的<br><img src="/img/bVbnIiw" alt="clipboard.png"></p>
 <h4 id="我们回顾一下浏览器渲染页面的流程"><a href="#我们回顾一下浏览器渲染页面的流程" class="headerlink" title="我们回顾一下浏览器渲染页面的流程"></a>我们回顾一下浏览器渲染页面的流程</h4><p>1.根据 HTML 结构生成 DOM 树<br>2.根据 CSS 生成 CSSOM<br>3.将 DOM 和 CSSOM 整合形成 RenderTree<br>4.根据 RenderTree 开始渲染和展示<br>5.遇到<script>时，会执行并阻塞渲染</p>
 <ul>
 <li><p>回流: 当我们对dom进行修改当时候，并且导致页面几何尺寸发生变化当时候（比如修改元素的宽、高或隐藏元素等），浏览器需要重新去计算元素当几何属性，并且同时会影响到其他元素当几何属性，然后将重新计算出来的结果绘制出来，这个过程就叫回流也叫重排。</p>
@@ -352,8 +353,6 @@
 <h4 id="Flush-队列"><a href="#Flush-队列" class="headerlink" title="Flush 队列"></a>Flush 队列</h4><p>继续用上面的代码来说明这个问题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const container = document.getElementById(&apos;container&apos;)</span><br><span class="line">container.style.width = &apos;100px&apos;</span><br><span class="line">container.style.height = &apos;200px&apos;</span><br><span class="line">container.style.border = &apos;10px solid red&apos;</span><br><span class="line">container.style.color = &apos;red&apos;</span><br></pre></td></tr></table></figure></p>
 <p>从这段代码中发生了几次回流与重绘呢？<br>在这里改变了几何属性的有width, height, border。<br>改变颜色的red,<br>所以导致了三次回流和一次重绘，一眼看过去是很正确的，其实是忽略了浏览器自身：并没有那么简单！<br>这段代码实际上只进行了一次回流和一次重绘，为什么和我们开始想的不一样呢？<br>因为现代浏览器是很聪明的。浏览器自己也清楚，如果每次 DOM 操作都即时地反馈一次回流或重绘，那么性能上来说是扛不住的。于是它自己缓存了一个 flush 队列，把我们触发的回流与重绘任务都塞进去，待到队列里的任务多起来、或者达到了一定的时间间隔，或者“不得已”的时候，再将这些任务一口气出队。因此我们看到，上面就算我们进行了 4 次 DOM 更改，也只触发了一次 Layout 和一次 Paint。<br>但是也有例外，因为有的时候我们需要精确获取某些样式信息，下面这些：<br>offsetTop、offsetLeft、 offsetWidth、offsetHeight、scrollTop、scrollLeft、scrollWidth、scrollHeight、clientTop、clientLeft、clientWidth、clientHeight<br>这些属性有很强的“即时性”。当我们访问这些属性时，浏览器会为了获得此时此刻的、最准确的属性值，而提前将 flush 队列的任务出队——这就是所谓的“不得已”时刻。</p>
 </script></p>
-          
-        
       
     </div>
     
@@ -370,162 +369,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/15/first/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小汪同学">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="清风寮">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/15/first/" itemprop="url">first</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-15T11:29:31+08:00">
-                2019-03-15
-              </time>
+              <a href="/2019/03/15/first/" rel="next" title="first">
+                <i class="fa fa-chevron-left"></i> first
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h3 id="first-article"><a href="#first-article" class="headerlink" title="first article"></a>first article</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -535,10 +400,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -546,6 +412,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -566,8 +436,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -619,6 +498,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#回流（Reflow）重绘（Repaint）"><span class="nav-number">1.</span> <span class="nav-text">回流（Reflow）重绘（Repaint）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么时候会触发回流或重绘呢？"><span class="nav-number">1.1.</span> <span class="nav-text">什么时候会触发回流或重绘呢？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我们回顾一下浏览器渲染页面的流程"><span class="nav-number">1.2.</span> <span class="nav-text">我们回顾一下浏览器渲染页面的流程</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -768,6 +663,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
