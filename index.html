@@ -229,7 +229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/懒加载/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/浏览器缓存机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小汪同学">
@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/20/懒加载/" itemprop="url">懒加载</a></h1>
+                <a class="post-title-link" href="/2019/03/20/浏览器缓存机制/" itemprop="url">HTTP缓存机制</a></h1>
         
 
         <div class="post-meta">
@@ -260,7 +260,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-20T22:07:07+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-20T22:48:16+08:00">
                 2019-03-20
               </time>
             
@@ -331,16 +331,13 @@
       
         
           
-            <p>const imgs = document.getElementsByTagName(‘img’);<br>const viewHeight = window.innherHeight || document.documentElement.clientHeight;</p>
-<p>let num = 0;<br>function lazyLoad() {<br>    for (let i = num; i &lt;= imgs.length; i++) {<br>        let distance = viewHeight - imgs[i].getBoundingClientRect().top;</p>
-<pre><code>    if (distance &gt;= 0) {
-        imgs[i].src = imgs[i].getAttritube(&apos;data-src&apos;)
-
-        num = i + 1;
-    }
-}
-</code></pre><p>};</p>
-<p>window.addEventListener(‘scroll’, lazyLoad, false);</p>
+            <h2 id="HTTP缓存"><a href="#HTTP缓存" class="headerlink" title="HTTP缓存"></a>HTTP缓存</h2><h2 id="HTTP缓存机制"><a href="#HTTP缓存机制" class="headerlink" title="HTTP缓存机制"></a>HTTP缓存机制</h2><h3 id="HTTP缓存分两种-强制缓存和对比缓存"><a href="#HTTP缓存分两种-强制缓存和对比缓存" class="headerlink" title="HTTP缓存分两种 强制缓存和对比缓存"></a>HTTP缓存分两种 强制缓存和对比缓存</h3><h4 id="我们再了解这些之前先简单了解HTTP报文，-HTTP报文就是浏览器和服务器通信时发送及响应的数据快。"><a href="#我们再了解这些之前先简单了解HTTP报文，-HTTP报文就是浏览器和服务器通信时发送及响应的数据快。" class="headerlink" title="我们再了解这些之前先简单了解HTTP报文， HTTP报文就是浏览器和服务器通信时发送及响应的数据快。"></a>我们再了解这些之前先简单了解HTTP报文， HTTP报文就是浏览器和服务器通信时发送及响应的数据快。</h4><h4 id="请求头部-header-附加信息（cookie，缓存信息等）与缓存相关的规则信息，均包含在header中"><a href="#请求头部-header-附加信息（cookie，缓存信息等）与缓存相关的规则信息，均包含在header中" class="headerlink" title="请求头部 header  附加信息（cookie，缓存信息等）与缓存相关的规则信息，均包含在header中"></a>请求头部 header  附加信息（cookie，缓存信息等）与缓存相关的规则信息，均包含在header中</h4><p>####和请求主体 body  HTTP请求真正想要传输的部分</p>
+<p>####简单了解了这些我们再来看看强缓存和对比缓存</p>
+<ol>
+<li>强缓存  关键字 expires cache-control  max-age = 设置过期时间</li>
+<li>对比缓存 关键字 response header 中last-modified 记录最后请求时间<br>request header if-modified-since 与最后请求时间做对比。<br> etag 记录唯一标识  if-none-match 与etag对比是否一致 一致返回服务端返回唯一标识<br> 可以获取缓存数据 状态码304<h3 id="如何设置请求缓存"><a href="#如何设置请求缓存" class="headerlink" title="如何设置请求缓存"></a>如何设置请求缓存</h3>前端设置http缓存,前端设置html页面缓存方法：静态的html页面想要设置使用缓存需要通过HTTP的META设置expires和cache-control</li>
+</ol>
+<p>设置如下网页元信息:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;Cache-Control&quot; content=&quot;max-age=7200&quot; /&gt;</span><br><span class="line"> &lt;meta http-equiv=&quot;Expires&quot; content=&quot;Mon, 20 Jul 2013 23:00:00 GMT&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -559,7 +556,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/防抖/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/懒加载/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小汪同学">
@@ -578,7 +575,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/20/防抖/" itemprop="url">防抖</a></h1>
+                <a class="post-title-link" href="/2019/03/20/懒加载/" itemprop="url">懒加载</a></h1>
         
 
         <div class="post-meta">
@@ -661,26 +658,16 @@
       
         
           
-            <p>防抖的中心思想在于：我会等你到底。在某段时间内，不管你触发了多少次回调，我都只认最后一次。</p>
-<p>继续讲司机开车的故事。这次的司机比较有耐心。第一个乘客上车后，司机开始计时（比如说十分钟）。十分钟之内，如果又上来了一个乘客，司机会把计时器清零，重新开始等另一个十分钟（延迟了等待）。直到有这么一位乘客，从他上车开始，后续十分钟都没有新乘客上车，司机会认为确实没有人需要搭这趟车了，才会把车开走。</p>
-<p>我们对比 throttle 来理解 debounce：在throttle的逻辑里，“第一个人说了算”，它只为第一个乘客计时，时间到了就执行回调。而 debounce 认为，“最后一个人说了算”，debounce 会为每一个新乘客设定新的定时器。</p>
-<p>我们基于上面的理解，一起来写一个 debounce：</p>
-<p>// fn是我们要包装的回调函数事件，delay每次等待都执行时间<br>function debounce(fn, delay) {<br>    // 定时器；<br>    let timer = null;</p>
-<pre><code>return function() {
-    // 保存上下文的this
-    let context = this
-    // 保存传入的参数
-    let args = arguments;
-    // 每次调用前都清空定时器
-    if (timer) {
-        clearTimeout(timer)
+            <p>const imgs = document.getElementsByTagName(‘img’);<br>const viewHeight = window.innherHeight || document.documentElement.clientHeight;</p>
+<p>let num = 0;<br>function lazyLoad() {<br>    for (let i = num; i &lt;= imgs.length; i++) {<br>        let distance = viewHeight - imgs[i].getBoundingClientRect().top;</p>
+<pre><code>    if (distance &gt;= 0) {
+        imgs[i].src = imgs[i].getAttritube(&apos;data-src&apos;)
+
+        num = i + 1;
     }
-   // 去设立一个新的定时器
-   timer = setTimeout (function() {
-        fn.apply(context, args);    
-   }, delay)
 }
-</code></pre><p>}<br>// 用throttle来包装scroll的回调<br>let better_scroll = debounce(() =&gt; {console.log(‘触发了滚动事件’), 1000});<br>document.addEventListener(‘scroll’, better_scroll);</p>
+</code></pre><p>};</p>
+<p>window.addEventListener(‘scroll’, lazyLoad, false);</p>
 
           
         
@@ -838,6 +825,176 @@
 <p>对应到实际的交互上是一样一样的：每当用户触发了一次 scroll 事件，我们就为这个触发操作开启计时器。一段时间内，后续所有的 scroll 事件都会被当作“一辆车的乘客”——它们无法触发新的 scroll 回调。直到“一段时间”到了，第一次触发的 scroll 事件对应的回调才会执行，而“一段时间内”触发的后续的 scroll 回调都会被节流阀无视掉。</p>
 <p>理解了大致的思路，我们现在一起实现一个 throttle：</p>
 <p>// fn是我们要包装的回调函数事件，Interval是我们要传入的时间间隔<br>function throttle(fn, Interval) {<br>// 记录上一次调用的时间；<br>    let last = 0;<br>    return function() {<br>        // 保存上下文的this<br>        let context = this<br>        // 保存传入的参数<br>        let args = arguments;<br>        // 保存调用时的时间;<br>        let now = + new Date;<br>        // 判断上一次调用时间和当前调用时间对比<br>        if (now - last &gt; Interval) {<br>        // 更新最后一次调用时间;<br>            last = now;<br>            fn.apply(context, args);<br>        }<br>    }<br>}<br>// 用throttle来包装scroll的回调<br>let better_scroll = throttle(() =&gt; {console.log(‘触发了滚动事件’), 1000});<br>document.addEventListener(‘scroll’, better_scroll);</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/防抖/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小汪同学">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="清风寮">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/20/防抖/" itemprop="url">防抖</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-20T22:07:07+08:00">
+                2019-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>防抖的中心思想在于：我会等你到底。在某段时间内，不管你触发了多少次回调，我都只认最后一次。</p>
+<p>继续讲司机开车的故事。这次的司机比较有耐心。第一个乘客上车后，司机开始计时（比如说十分钟）。十分钟之内，如果又上来了一个乘客，司机会把计时器清零，重新开始等另一个十分钟（延迟了等待）。直到有这么一位乘客，从他上车开始，后续十分钟都没有新乘客上车，司机会认为确实没有人需要搭这趟车了，才会把车开走。</p>
+<p>我们对比 throttle 来理解 debounce：在throttle的逻辑里，“第一个人说了算”，它只为第一个乘客计时，时间到了就执行回调。而 debounce 认为，“最后一个人说了算”，debounce 会为每一个新乘客设定新的定时器。</p>
+<p>我们基于上面的理解，一起来写一个 debounce：</p>
+<p>// fn是我们要包装的回调函数事件，delay每次等待都执行时间<br>function debounce(fn, delay) {<br>    // 定时器；<br>    let timer = null;</p>
+<pre><code>return function() {
+    // 保存上下文的this
+    let context = this
+    // 保存传入的参数
+    let args = arguments;
+    // 每次调用前都清空定时器
+    if (timer) {
+        clearTimeout(timer)
+    }
+   // 去设立一个新的定时器
+   timer = setTimeout (function() {
+        fn.apply(context, args);    
+   }, delay)
+}
+</code></pre><p>}<br>// 用throttle来包装scroll的回调<br>let better_scroll = debounce(() =&gt; {console.log(‘触发了滚动事件’), 1000});<br>document.addEventListener(‘scroll’, better_scroll);</p>
 
           
         
@@ -1069,7 +1226,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
