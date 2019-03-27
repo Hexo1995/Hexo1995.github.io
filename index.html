@@ -229,6 +229,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/float/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小汪同学">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="清风寮">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/27/float/" itemprop="url">float</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-27T17:03:33+08:00">
+                2019-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="问自己三个问题："><a href="#问自己三个问题：" class="headerlink" title="问自己三个问题："></a>问自己三个问题：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">第一 浮动会造成什么影响？</span><br><span class="line"></span><br><span class="line">第二，如何解决这些因为浮动而造成的影响？</span><br><span class="line"></span><br><span class="line">第三，bfc原理？</span><br></pre></td></tr></table></figure>
+<p>float破坏了文档流，为什么还要设计这个api，我查了一些资料最后才知道，这是因为当初设计float的目的是为了能实现文字能够环绕图片的排版功能，也就是我们有时会纳闷的一点：<strong>设置浮动后，还是会挤占容器中的文本内容。</strong></p>
+<p>当我们设置浮动的时候，我们并没有将文字覆盖掉，尽管使用浮动的盒子脱离了文档流，这也证实了float的设计初衷是为了使文字环绕图片排版功能。</p>
+<p>如果你去试试position: absolute, 你会发现会脱离文档流并且文字也会被遮挡主，这才是真正意义上的脱离文档流。覆盖在当前位置上的所有容器和文本内容之上。对比思考一下，会发现这又证明了float被设计出来的主要目的。如果能理解成这样，我觉得对于不同业务上该用什么方式清除float，或者说该用什么来代替float，将会有个很明确的方向。</p>
+<p>那么浮动会造成那些影响呢，影响如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">第一个影响，影响了布局</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">第二个影响，影响了父容器的高度，正常父元素的高度是自适应的，高度为其包含的内容总高度，而内部元素的浮动造成了父容器高度塌陷。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">第三个影响，父容器高度塌陷了，将会影响和父元素同级的文档布局。</span><br></pre></td></tr></table></figure>
+<p>####要解决这三个影响，需要从两个方向思考：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">第一个方向：解决父元素给其同级的元素造成的影响，我比喻成解决外部矛盾。</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">第二个方向：解决父级元素内部的浮动元素对其同级元素的影响，我比喻成解决内部矛盾。</span><br></pre></td></tr></table></figure>
+<h2 id="解决外部矛盾"><a href="#解决外部矛盾" class="headerlink" title="解决外部矛盾"></a>解决外部矛盾</h2><p>###触发bfc</p>
+<p>第一个是触发<font color="red">bfc</font>，为什么呢，因为触发bfc后，高度会包括浮动元素的高度。怎么触发呢，可以给父级元素设置overflow:auto;对于其他的触发bfc方式，我就不说了，我主要说一下原理。代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;清除float浮动&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .z1&#123;</span><br><span class="line">        height: 200px;</span><br><span class="line">        width: 200px;</span><br><span class="line">        box-sizing: border-box;</span><br><span class="line">        float: left;</span><br><span class="line">        text-align: center;</span><br><span class="line">        background: skyblue;</span><br><span class="line">        padding-top: 80px;</span><br><span class="line">        opacity: 0.5;</span><br><span class="line">    &#125;</span><br><span class="line">    .z2 &#123;</span><br><span class="line">        background: yellow</span><br><span class="line">    &#125;</span><br><span class="line">    .z3 &#123;</span><br><span class="line">        background: red;</span><br><span class="line">    &#125;</span><br><span class="line">    .z4 &#123;</span><br><span class="line">        background: green;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    .z5 &#123;</span><br><span class="line">        background: pink;</span><br><span class="line">    &#125;</span><br><span class="line">    .z6 &#123;</span><br><span class="line">        color: #fff;</span><br><span class="line">        background: black;</span><br><span class="line">    &#125;</span><br><span class="line">    .z7 &#123;</span><br><span class="line">        color: #fff;</span><br><span class="line">        background: blue;</span><br><span class="line">    &#125;</span><br><span class="line">    .fu &#123;</span><br><span class="line">        overflow: hidden;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;fu&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;z2&quot;&gt;没有设置任何浮动的容器, 背景为黄色&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;z3&quot;&gt;没有设置任何浮动的容器, 背景为红色&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;z1&quot;&gt;设置了浮动的元素, opacity为0.5&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;z4&quot;&gt;没有设置任何浮动的容器, 背景为绿色&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;z5&quot;&gt;没有设置任何浮动的容器, 背景为粉色&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;z6&quot;&gt;和父级元素同级的容器, 没有设置任何浮动, 背景为绿色&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;z7&quot;&gt;和父级元素同级的容器, 没有设置任何浮动, 背景为绿色&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>图中可以很清晰的看出，触发父元素的bfc后，外部矛盾解决了，但是内部的矛盾还没有解决。那么现在就开始解决内部矛盾。怎么解决内部矛盾呢，也就是父元素内部的浮动元素的高度和后面的同级元素的高度有重叠呢。这个时候，我们先不着急解决内部矛盾，我们来看一下，另一种解决外部矛盾的方式。</p>
+<p>###clear原理<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;清除float浮动&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .z1&#123;</span><br><span class="line">        height: 200px;</span><br><span class="line">        width: 200px;</span><br><span class="line">        box-sizing: border-box;</span><br><span class="line">        float: left;</span><br><span class="line">        text-align: center;</span><br><span class="line">        background: skyblue;</span><br><span class="line">        padding-top: 80px;</span><br><span class="line">        opacity: 0.5;</span><br><span class="line">    &#125;</span><br><span class="line">    .z2 &#123;</span><br><span class="line">        background: yellow</span><br><span class="line">    &#125;</span><br><span class="line">    .z3 &#123;</span><br><span class="line">        background: red;</span><br><span class="line">    &#125;</span><br><span class="line">    .z4 &#123;</span><br><span class="line">        background: green;</span><br><span class="line">        /* clear: left */</span><br><span class="line">    &#125;</span><br><span class="line">    .z5 &#123;</span><br><span class="line">        background: pink;</span><br><span class="line">    &#125;</span><br><span class="line">    .z6 &#123;</span><br><span class="line">        color: #fff;</span><br><span class="line">        background: black;</span><br><span class="line">    &#125;</span><br><span class="line">    .z7 &#123;</span><br><span class="line">        color: #fff;</span><br><span class="line">        background: blue;</span><br><span class="line">    &#125;</span><br><span class="line">    .fu &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    .clearfix:after &#123;</span><br><span class="line">        display: block;</span><br><span class="line">        overflow: hidden;</span><br><span class="line">        content: &apos;伪元素的内容哦&apos;;</span><br><span class="line">        clear: both;</span><br><span class="line">        height: 0;</span><br><span class="line">        background: slateblue;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;fu clearfix&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;z2&quot;&gt;没有设置任何浮动的容器, 背景为黄色&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;z3&quot;&gt;没有设置任何浮动的容器, 背景为红色&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;z1&quot;&gt;设置了浮动的元素, opacity为0.5&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;z4&quot;&gt;没有设置任何浮动的容器, 背景为绿色&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;z5&quot;&gt;没有设置任何浮动的容器, 背景为粉色&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;z6&quot;&gt;和父级元素同级的容器, 没有设置任何浮动, 背景为绿色&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;z7&quot;&gt;和父级元素同级的容器, 没有设置任何浮动, 背景为绿色&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>发现清除浮动失败了，其实可以看出，给父元素增加一个伪元素来清除浮动的本质，是通过<br><strong>给父元素再加一个块级子容器，当然这个也就是父元素的最后一个块级子容器了。同时给这个块级子容器设置clear属性来清除其浮动，这样这个子容器就能排列在浮动元素的后面，同时也把父元素的高度撑起来了。那么父元素的同级元素也能正常排列了。所以这个子容器不能有高度和内容，不然会影响父元素的布局。<br></strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/浏览器缓存机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -338,6 +502,166 @@
 <li>对比缓存 关键字 response header 中last-modified 记录最后请求时间<br>request header if-modified-since 与最后请求时间做对比。<br> etag 记录唯一标识  if-none-match 与etag对比是否一致 一致返回服务端返回唯一标识<br> 可以获取缓存数据 状态码304<h3 id="如何设置请求缓存"><a href="#如何设置请求缓存" class="headerlink" title="如何设置请求缓存"></a>如何设置请求缓存</h3>前端设置http缓存,前端设置html页面缓存方法：静态的html页面想要设置使用缓存需要通过HTTP的META设置expires和cache-control</li>
 </ol>
 <p>设置如下网页元信息:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;Cache-Control&quot; content=&quot;max-age=7200&quot; /&gt;</span><br><span class="line"> &lt;meta http-equiv=&quot;Expires&quot; content=&quot;Mon, 20 Jul 2013 23:00:00 GMT&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/懒加载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小汪同学">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="清风寮">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/20/懒加载/" itemprop="url">懒加载</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-20T22:07:07+08:00">
+                2019-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>const imgs = document.getElementsByTagName(‘img’);<br>const viewHeight = window.innherHeight || document.documentElement.clientHeight;</p>
+<p>let num = 0;<br>function lazyLoad() {<br>    for (let i = num; i &lt;= imgs.length; i++) {<br>        let distance = viewHeight - imgs[i].getBoundingClientRect().top;</p>
+<pre><code>    if (distance &gt;= 0) {
+        imgs[i].src = imgs[i].getAttritube(&apos;data-src&apos;)
+
+        num = i + 1;
+    }
+}
+</code></pre><p>};</p>
+<p>window.addEventListener(‘scroll’, lazyLoad, false);</p>
 
           
         
@@ -556,7 +880,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/懒加载/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/防抖/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小汪同学">
@@ -575,7 +899,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/20/懒加载/" itemprop="url">懒加载</a></h1>
+                <a class="post-title-link" href="/2019/03/20/防抖/" itemprop="url">防抖</a></h1>
         
 
         <div class="post-meta">
@@ -658,16 +982,26 @@
       
         
           
-            <p>const imgs = document.getElementsByTagName(‘img’);<br>const viewHeight = window.innherHeight || document.documentElement.clientHeight;</p>
-<p>let num = 0;<br>function lazyLoad() {<br>    for (let i = num; i &lt;= imgs.length; i++) {<br>        let distance = viewHeight - imgs[i].getBoundingClientRect().top;</p>
-<pre><code>    if (distance &gt;= 0) {
-        imgs[i].src = imgs[i].getAttritube(&apos;data-src&apos;)
-
-        num = i + 1;
+            <p>防抖的中心思想在于：我会等你到底。在某段时间内，不管你触发了多少次回调，我都只认最后一次。</p>
+<p>继续讲司机开车的故事。这次的司机比较有耐心。第一个乘客上车后，司机开始计时（比如说十分钟）。十分钟之内，如果又上来了一个乘客，司机会把计时器清零，重新开始等另一个十分钟（延迟了等待）。直到有这么一位乘客，从他上车开始，后续十分钟都没有新乘客上车，司机会认为确实没有人需要搭这趟车了，才会把车开走。</p>
+<p>我们对比 throttle 来理解 debounce：在throttle的逻辑里，“第一个人说了算”，它只为第一个乘客计时，时间到了就执行回调。而 debounce 认为，“最后一个人说了算”，debounce 会为每一个新乘客设定新的定时器。</p>
+<p>我们基于上面的理解，一起来写一个 debounce：</p>
+<p>// fn是我们要包装的回调函数事件，delay每次等待都执行时间<br>function debounce(fn, delay) {<br>    // 定时器；<br>    let timer = null;</p>
+<pre><code>return function() {
+    // 保存上下文的this
+    let context = this
+    // 保存传入的参数
+    let args = arguments;
+    // 每次调用前都清空定时器
+    if (timer) {
+        clearTimeout(timer)
     }
+   // 去设立一个新的定时器
+   timer = setTimeout (function() {
+        fn.apply(context, args);    
+   }, delay)
 }
-</code></pre><p>};</p>
-<p>window.addEventListener(‘scroll’, lazyLoad, false);</p>
+</code></pre><p>}<br>// 用throttle来包装scroll的回调<br>let better_scroll = debounce(() =&gt; {console.log(‘触发了滚动事件’), 1000});<br>document.addEventListener(‘scroll’, better_scroll);</p>
 
           
         
@@ -825,176 +1159,6 @@
 <p>对应到实际的交互上是一样一样的：每当用户触发了一次 scroll 事件，我们就为这个触发操作开启计时器。一段时间内，后续所有的 scroll 事件都会被当作“一辆车的乘客”——它们无法触发新的 scroll 回调。直到“一段时间”到了，第一次触发的 scroll 事件对应的回调才会执行，而“一段时间内”触发的后续的 scroll 回调都会被节流阀无视掉。</p>
 <p>理解了大致的思路，我们现在一起实现一个 throttle：</p>
 <p>// fn是我们要包装的回调函数事件，Interval是我们要传入的时间间隔<br>function throttle(fn, Interval) {<br>// 记录上一次调用的时间；<br>    let last = 0;<br>    return function() {<br>        // 保存上下文的this<br>        let context = this<br>        // 保存传入的参数<br>        let args = arguments;<br>        // 保存调用时的时间;<br>        let now = + new Date;<br>        // 判断上一次调用时间和当前调用时间对比<br>        if (now - last &gt; Interval) {<br>        // 更新最后一次调用时间;<br>            last = now;<br>            fn.apply(context, args);<br>        }<br>    }<br>}<br>// 用throttle来包装scroll的回调<br>let better_scroll = throttle(() =&gt; {console.log(‘触发了滚动事件’), 1000});<br>document.addEventListener(‘scroll’, better_scroll);</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/防抖/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小汪同学">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="清风寮">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/20/防抖/" itemprop="url">防抖</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-20T22:07:07+08:00">
-                2019-03-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>防抖的中心思想在于：我会等你到底。在某段时间内，不管你触发了多少次回调，我都只认最后一次。</p>
-<p>继续讲司机开车的故事。这次的司机比较有耐心。第一个乘客上车后，司机开始计时（比如说十分钟）。十分钟之内，如果又上来了一个乘客，司机会把计时器清零，重新开始等另一个十分钟（延迟了等待）。直到有这么一位乘客，从他上车开始，后续十分钟都没有新乘客上车，司机会认为确实没有人需要搭这趟车了，才会把车开走。</p>
-<p>我们对比 throttle 来理解 debounce：在throttle的逻辑里，“第一个人说了算”，它只为第一个乘客计时，时间到了就执行回调。而 debounce 认为，“最后一个人说了算”，debounce 会为每一个新乘客设定新的定时器。</p>
-<p>我们基于上面的理解，一起来写一个 debounce：</p>
-<p>// fn是我们要包装的回调函数事件，delay每次等待都执行时间<br>function debounce(fn, delay) {<br>    // 定时器；<br>    let timer = null;</p>
-<pre><code>return function() {
-    // 保存上下文的this
-    let context = this
-    // 保存传入的参数
-    let args = arguments;
-    // 每次调用前都清空定时器
-    if (timer) {
-        clearTimeout(timer)
-    }
-   // 去设立一个新的定时器
-   timer = setTimeout (function() {
-        fn.apply(context, args);    
-   }, delay)
-}
-</code></pre><p>}<br>// 用throttle来包装scroll的回调<br>let better_scroll = debounce(() =&gt; {console.log(‘触发了滚动事件’), 1000});<br>document.addEventListener(‘scroll’, better_scroll);</p>
 
           
         
@@ -1226,7 +1390,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
