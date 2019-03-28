@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="const imgs = document.getElementsByTagName(‘img’);const viewHeight = window.innherHeight || document.documentElement.clientHeight; let num = 0;function lazyLoad() {    for (let i = num; i &amp;lt;= imgs.l">
+<meta name="description" content="常用的webpack插件html-webpack-plugin 可以指定template模板文件，将会在output目录下，生成html文件，并引入打包后的js.安装依赖:npm install –save-dev html-webpack-plugin 支持加载css文件通过使用不同的 style-loader 和 css-loader, 可以将 css 文件转换成JS文件类型。安装依赖:np">
 <meta property="og:type" content="article">
-<meta property="og:title" content="懒加载">
-<meta property="og:url" content="http://yoursite.com/2019/03/20/懒加载/index.html">
+<meta property="og:title" content="webpack">
+<meta property="og:url" content="http://yoursite.com/2019/03/28/webpack/index.html">
 <meta property="og:site_name" content="清风寮">
-<meta property="og:description" content="const imgs = document.getElementsByTagName(‘img’);const viewHeight = window.innherHeight || document.documentElement.clientHeight; let num = 0;function lazyLoad() {    for (let i = num; i &amp;lt;= imgs.l">
+<meta property="og:description" content="常用的webpack插件html-webpack-plugin 可以指定template模板文件，将会在output目录下，生成html文件，并引入打包后的js.安装依赖:npm install –save-dev html-webpack-plugin 支持加载css文件通过使用不同的 style-loader 和 css-loader, 可以将 css 文件转换成JS文件类型。安装依赖:np">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-20T14:07:58.921Z">
+<meta property="og:updated_time" content="2019-03-28T03:53:54.879Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="懒加载">
-<meta name="twitter:description" content="const imgs = document.getElementsByTagName(‘img’);const viewHeight = window.innherHeight || document.documentElement.clientHeight; let num = 0;function lazyLoad() {    for (let i = num; i &amp;lt;= imgs.l">
+<meta name="twitter:title" content="webpack">
+<meta name="twitter:description" content="常用的webpack插件html-webpack-plugin 可以指定template模板文件，将会在output目录下，生成html文件，并引入打包后的js.安装依赖:npm install –save-dev html-webpack-plugin 支持加载css文件通过使用不同的 style-loader 和 css-loader, 可以将 css 文件转换成JS文件类型。安装依赖:np">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/20/懒加载/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/28/webpack/">
 
 
 
 
 
-  <title>懒加载 | 清风寮</title>
+  <title>webpack | 清风寮</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/懒加载/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/28/webpack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小汪同学">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">懒加载</h1>
+          <h1 class="post-title" itemprop="name headline">webpack</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-20T22:07:07+08:00">
-                2019-03-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-28T11:53:48+08:00">
+                2019-03-28
               </time>
             
 
@@ -330,16 +330,25 @@
       
 
       
-        <p>const imgs = document.getElementsByTagName(‘img’);<br>const viewHeight = window.innherHeight || document.documentElement.clientHeight;</p>
-<p>let num = 0;<br>function lazyLoad() {<br>    for (let i = num; i &lt;= imgs.length; i++) {<br>        let distance = viewHeight - imgs[i].getBoundingClientRect().top;</p>
-<pre><code>    if (distance &gt;= 0) {
-        imgs[i].src = imgs[i].getAttritube(&apos;data-src&apos;)
-
-        num = i + 1;
-    }
-}
-</code></pre><p>};</p>
-<p>window.addEventListener(‘scroll’, lazyLoad, false);</p>
+        <!--
+    webpack 核心概念:
+    Entry: 入口
+    Module:模块，webpack中一切皆是模块
+    Chunk:代码库，一个chunk由十多个模块组合而成，用于代码合并与分割
+    Loader:模块转换器，用于把模块原内容按照需求转换成新内容
+    Plugin:扩展插件，在webpack构建流程中的特定时机注入扩展逻辑来改变构建结果或做你想要做的事情
+    Output: 输出结果
+ -->
+<p>常用的webpack插件<br>html-webpack-plugin 可以指定template模板文件，将会在output目录下，生成html文件，并引入打包后的js.<br>安装依赖:<br>npm install –save-dev html-webpack-plugin</p>
+<p>支持加载css文件<br>通过使用不同的 style-loader 和 css-loader, 可以将 css 文件转换成JS文件类型。<br>安装依赖:<br>npm install –save-dev style-loader css-loader</p>
+<p>支持加载图片<br>file-loader: 解决CSS等文件中的引入图片路径问题<br>url-loader: 当图片小于limit的时候会把图片Base64编码，大于limit参数的时候还是使用file-loader进行拷贝<br>如果希望图片存放在单独的目录下，那么需要指定outputPath<br>安装依赖:<br>npm install –save-dev url-loader file-loader</p>
+<p>支持编译less和sass<br>有些前端同事可能习惯于使用less或者是sass编写css，那么也需要在 webpack 中进行配置。<br>安装对应的依赖:<br>npm install –save-dev less less-loader<br>npm install –save-dev node-sass sass-loader</p>
+<p>.支持转义 ES6/ES7/JSX<br>ES6/ES7/JSX 转义需要 Babel 的依赖，支持装饰器。<br>安装对应的依赖:<br>npm install –save-dev @babel/core babel-loader @babel/preset-env @babel/preset-react @babel/plugin-proposal-decorators @babel/plugin-proposal-object-rest-spread</p>
+<p>.压缩JS文件<br>安装依赖:<br>npm install –save-dev uglifyjs-webpack-plugin<br>npm install –save-dev optimize-css-assets-webpack-plugin</p>
+<p>分离CSS(如果CSS文件较大的话)<br>因为CSS的下载和JS可以并行，当一个HTML文件很大的时候，可以把CSS单独提取出来加载<br>npm install –save-dev mini-css-extract-plugin</p>
+<p>.压缩CSS文件<br>安装依赖:<br>npm install –save-dev optimize-css-assets-webpack-plugin</p>
+<p>打包前先清空输出目录<br>npm install –save-dev clean-webpack-plugin</p>
+<p>配置 webpack-dev-server<br>webpack-dev-server 提供了一个简单的Web服务器和实时热更新的能力<br>安装依赖:<br>npm install –save-dev webpack-dev-server</p>
 
       
     </div>
@@ -364,8 +373,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/20/回流和重载/" rel="next" title="回流和重载">
-                <i class="fa fa-chevron-left"></i> 回流和重载
+              <a href="/2019/03/27/git/" rel="next" title="git">
+                <i class="fa fa-chevron-left"></i> git
               </a>
             
           </div>
@@ -373,10 +382,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/20/浏览器缓存机制/" rel="prev" title="HTTP缓存机制">
-                HTTP缓存机制 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

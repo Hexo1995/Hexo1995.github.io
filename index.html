@@ -229,6 +229,330 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/28/webpack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小汪同学">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="清风寮">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/28/webpack/" itemprop="url">webpack</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-28T11:53:48+08:00">
+                2019-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!--
+    webpack 核心概念:
+    Entry: 入口
+    Module:模块，webpack中一切皆是模块
+    Chunk:代码库，一个chunk由十多个模块组合而成，用于代码合并与分割
+    Loader:模块转换器，用于把模块原内容按照需求转换成新内容
+    Plugin:扩展插件，在webpack构建流程中的特定时机注入扩展逻辑来改变构建结果或做你想要做的事情
+    Output: 输出结果
+ -->
+<p>常用的webpack插件<br>html-webpack-plugin 可以指定template模板文件，将会在output目录下，生成html文件，并引入打包后的js.<br>安装依赖:<br>npm install –save-dev html-webpack-plugin</p>
+<p>支持加载css文件<br>通过使用不同的 style-loader 和 css-loader, 可以将 css 文件转换成JS文件类型。<br>安装依赖:<br>npm install –save-dev style-loader css-loader</p>
+<p>支持加载图片<br>file-loader: 解决CSS等文件中的引入图片路径问题<br>url-loader: 当图片小于limit的时候会把图片Base64编码，大于limit参数的时候还是使用file-loader进行拷贝<br>如果希望图片存放在单独的目录下，那么需要指定outputPath<br>安装依赖:<br>npm install –save-dev url-loader file-loader</p>
+<p>支持编译less和sass<br>有些前端同事可能习惯于使用less或者是sass编写css，那么也需要在 webpack 中进行配置。<br>安装对应的依赖:<br>npm install –save-dev less less-loader<br>npm install –save-dev node-sass sass-loader</p>
+<p>.支持转义 ES6/ES7/JSX<br>ES6/ES7/JSX 转义需要 Babel 的依赖，支持装饰器。<br>安装对应的依赖:<br>npm install –save-dev @babel/core babel-loader @babel/preset-env @babel/preset-react @babel/plugin-proposal-decorators @babel/plugin-proposal-object-rest-spread</p>
+<p>.压缩JS文件<br>安装依赖:<br>npm install –save-dev uglifyjs-webpack-plugin<br>npm install –save-dev optimize-css-assets-webpack-plugin</p>
+<p>分离CSS(如果CSS文件较大的话)<br>因为CSS的下载和JS可以并行，当一个HTML文件很大的时候，可以把CSS单独提取出来加载<br>npm install –save-dev mini-css-extract-plugin</p>
+<p>.压缩CSS文件<br>安装依赖:<br>npm install –save-dev optimize-css-assets-webpack-plugin</p>
+<p>打包前先清空输出目录<br>npm install –save-dev clean-webpack-plugin</p>
+<p>配置 webpack-dev-server<br>webpack-dev-server 提供了一个简单的Web服务器和实时热更新的能力<br>安装依赖:<br>npm install –save-dev webpack-dev-server</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小汪同学">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="清风寮">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/27/git/" itemprop="url">git</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-27T17:33:05+08:00">
+                2019-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###为什么会出现git</p>
+<p>git 是一个开源的 分布式版本控制系统 ，源码也在 github 上开源了，可以自行搜索。提到分布式版本控制系统，那应该联想到 集中式版本控制系统 ，具有代表性的比如 SVN ， SVN 的全称是 Subversion 。</p>
+<p>###为什么要用git<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">为什么我们要用git?</span><br></pre></td></tr></table></figure></p>
+<p>直觉上，我们自然而然的用了，发现也很好用。那我们可以问一下自己，git 为什么很好用，如果我们看了上面提到的博客，可能我们已经有了答案，其实很多很棒的东西的诞生，都是在诞生的某个维度背景下，解决了大部分同类没有解决掉的痛点。</p>
+<p>所以现在我们用了 git ，我们也觉得很好用，但是事实上我们好像并不清楚 git<br>的出现，解决了什么样的痛点，我们只知道好用。我说这句话，就是想说明一下，去了解一个东西，最好去了解这个东西诞生时所处的时代背景或者技术背景。哎，好像我没有回答为什么要用 git ？ 不慌，问题不大，其实答案已经在前面提到了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/float/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1390,7 +1714,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
