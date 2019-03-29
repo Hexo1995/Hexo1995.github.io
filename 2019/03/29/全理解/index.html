@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="#let const var 全理解 变量声明一直是js工作中最微妙的一部分，它不像C语言一样，变量总是在被它创建的时候声明，js语言可以允许你在你需要声明变量的时候进行声明。###1. var let const 之变量声明  ###var 声明与变量提升。  当我们使用var关键字进行变量声明的时候，无论变量声明的位置在哪里，都会被是为声明于所在的函数的顶部（如果不在函数内的话，则视为在全局作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="let const var 全理解">
+<meta property="og:url" content="http://yoursite.com/2019/03/29/全理解/index.html">
+<meta property="og:site_name" content="清风寮">
+<meta property="og:description" content="#let const var 全理解 变量声明一直是js工作中最微妙的一部分，它不像C语言一样，变量总是在被它创建的时候声明，js语言可以允许你在你需要声明变量的时候进行声明。###1. var let const 之变量声明  ###var 声明与变量提升。  当我们使用var关键字进行变量声明的时候，无论变量声明的位置在哪里，都会被是为声明于所在的函数的顶部（如果不在函数内的话，则视为在全局作">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-29T08:46:02.797Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="let const var 全理解">
+<meta name="twitter:description" content="#let const var 全理解 变量声明一直是js工作中最微妙的一部分，它不像C语言一样，变量总是在被它创建的时候声明，js语言可以允许你在你需要声明变量的时候进行声明。###1. var let const 之变量声明  ###var 声明与变量提升。  当我们使用var关键字进行变量声明的时候，无论变量声明的位置在哪里，都会被是为声明于所在的函数的顶部（如果不在函数内的话，则视为在全局作">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/29/全理解/">
+
+
+
+
+
+  <title>let const var 全理解 | 清风寮</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">清风寮</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/全理解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小汪同学">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="清风寮">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">let const var 全理解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-29T16:45:06+08:00">
+                2019-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#let const var 全理解</p>
+<h3 id="变量声明一直是js工作中最微妙的一部分，它不像C语言一样，变量总是在被它创建的时候声明，js语言可以允许你在你需要声明变量的时候进行声明。"><a href="#变量声明一直是js工作中最微妙的一部分，它不像C语言一样，变量总是在被它创建的时候声明，js语言可以允许你在你需要声明变量的时候进行声明。" class="headerlink" title="变量声明一直是js工作中最微妙的一部分，它不像C语言一样，变量总是在被它创建的时候声明，js语言可以允许你在你需要声明变量的时候进行声明。"></a>变量声明一直是js工作中最微妙的一部分，它不像C语言一样，变量总是在被它创建的时候声明，js语言可以允许你在你需要声明变量的时候进行声明。</h3><p>###1. var let const 之变量声明</p>
+<ul>
+<li>###var 声明与变量提升。</li>
+</ul>
+<h4 id="当我们使用var关键字进行变量声明的时候，无论变量声明的位置在哪里，都会被是为声明于所在的函数的顶部（如果不在函数内的话，则视为在全局作用域的顶部-这就是所谓的变量提升-hoisting"><a href="#当我们使用var关键字进行变量声明的时候，无论变量声明的位置在哪里，都会被是为声明于所在的函数的顶部（如果不在函数内的话，则视为在全局作用域的顶部-这就是所谓的变量提升-hoisting" class="headerlink" title="当我们使用var关键字进行变量声明的时候，无论变量声明的位置在哪里，都会被是为声明于所在的函数的顶部（如果不在函数内的话，则视为在全局作用域的顶部)这就是所谓的变量提升(hoisting)"></a>当我们使用var关键字进行变量声明的时候，无论变量声明的位置在哪里，都会被是为声明于所在的函数的顶部（如果不在函数内的话，则视为在全局作用域的顶部)<strong color="red">这就是所谓的变量提升(hoisting)</strong></h4><p>var提升如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function getValue(condition) &#123;</span><br><span class="line">if (condition) &#123;</span><br><span class="line">var value = &quot;blue&quot;;</span><br><span class="line">// 其他代码</span><br><span class="line">return value;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">// value 在此处可访问，值为 undefined</span><br><span class="line">return null;</span><br><span class="line">&#125;</span><br><span class="line">// value 在此处可访问，值为 undefined</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>###块级声明let</li>
+</ul>
+<p>####块级声明也就是让所声明的变量在指定的作用域外无法被访问到，块级作用域在如下情况下被创建</p>
+<ol>
+<li>在一个函数内部，</li>
+<li>在一个代码块(由一对花括号包裹)内部</li>
+</ol>
+<p>####let声明的语法和var声明一致，由于let声明不会将变量提升到函数顶部，因此我们需要手动将let声明放置到顶部，以便让变量在整个代码块内部可用。</p>
+<p>如下所示:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function getValue(condition) &#123;</span><br><span class="line">if (condition) &#123;</span><br><span class="line">let value = &quot;blue&quot;;</span><br><span class="line">// 其他代码</span><br><span class="line">return value;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">// value 在此处不可用</span><br><span class="line">return null;</span><br><span class="line">&#125;</span><br><span class="line">// value 在此处不可用</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###禁止重复标识<br>如果一个标识符已经在代码内部被定义，重复进行let声明会报错<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a = 30;</span><br><span class="line">//报错</span><br><span class="line">let a = 30;</span><br></pre></td></tr></table></figure></p>
+<h4 id="a变量被声明了两次：一次使用-var-，另一次使用-let-。因为-let-不能在同一作用域内重复声明一个已有标识符，此处的-let-声明就会抛出错误。另一方面，在嵌套的作用域内使用-let-声明一个同名的新变量，则不会抛出错误，以下代码对此进行了演示："><a href="#a变量被声明了两次：一次使用-var-，另一次使用-let-。因为-let-不能在同一作用域内重复声明一个已有标识符，此处的-let-声明就会抛出错误。另一方面，在嵌套的作用域内使用-let-声明一个同名的新变量，则不会抛出错误，以下代码对此进行了演示：" class="headerlink" title="a变量被声明了两次：一次使用 var ，另一次使用 let 。因为 let 不能在同一作用域内重复声明一个已有标识符，此处的 let 声明就会抛出错误。另一方面，在嵌套的作用域内使用 let 声明一个同名的新变量，则不会抛出错误，以下代码对此进行了演示："></a>a变量被声明了两次：一次使用 var ，另一次使用 let 。因为 let 不能在同一作用域内重复声明一个已有标识符，此处的 let 声明就会抛出错误。另一方面，在嵌套的作用域内使用 let 声明一个同名的新变量，则不会抛出错误，以下代码对此进行了演示：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var count = 30;</span><br><span class="line">// 不会抛出错误</span><br><span class="line">if (condition) &#123;</span><br><span class="line">let count = 40;</span><br><span class="line">// 其他代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>####这段代码中不会抛错，关键点在于<strong>let在同一级代码块中重复声明会报错</strong></p>
+<p>###const常量声明</p>
+<p>####在es6中可以使用const语法进行声明。使用const声明的变量会被认为是常量(constant),意味着他们的值在被设置完成后既不能再被改变。正因为如此，所有的const的变量都需要在声明时进行初始化,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 有效的常量</span><br><span class="line">const maxItems = 30;</span><br><span class="line">// 语法错误：未进行初始化</span><br><span class="line">const name;</span><br></pre></td></tr></table></figure></p>
+<p>####maxItems 变量被初始化了，因此它的 const 声明能正常起效。而 name 变量没有被初始化，导致在试图运行这段代码时抛出了错误。const声明会组织对变量绑定和对自生值的修改，这意味着const声明并不会组织对变量成员的修改。例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const person = &#123;</span><br><span class="line">name: &quot;Nicholas&quot;</span><br><span class="line">&#125;;</span><br><span class="line">// 工作正常</span><br><span class="line">person.name = &quot;Greg&quot;;</span><br><span class="line">// 抛出错误</span><br><span class="line">person = &#123;</span><br><span class="line">name: &quot;Greg&quot;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>###const声明和let声明的对比</p>
+<ol>
+<li><p>####首先他们都是块级声明,这就意味着常量在声明它们的语句块外是无法被访问的,并且声明也不会被提升，示例如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (condition) &#123;</span><br><span class="line">const maxItems = 5;</span><br><span class="line">// 其他代码</span><br><span class="line">&#125;</span><br><span class="line">// maxItems 在此处无法访问</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>####它们在统一级作用域中重复声明时会导致抛出错误</p>
+</li>
+</ol>
+<p>###暂时性死区</p>
+<p>####当我们使用let或者const 进行声明的时候，在到达声明处之前都是无法访问的，如果我们试图访问会导致一个引用错误。出项这个问题是因为暂时性死区</p>
+<h4 id="当JS-引擎检视接下来的代码块并发现变量声明时，它会在面对-var-的情况下将声明提升到函数或全局作用域的顶部，而面对-let-或-const-时会将声明放在暂时性死区内。任何在暂时性死区内访问变量的企图都会导致“运行时”错误（runtime-error）。只有执行到变量的声明语句时，该变量才会从暂时性死区内被移除并可以安全使用。"><a href="#当JS-引擎检视接下来的代码块并发现变量声明时，它会在面对-var-的情况下将声明提升到函数或全局作用域的顶部，而面对-let-或-const-时会将声明放在暂时性死区内。任何在暂时性死区内访问变量的企图都会导致“运行时”错误（runtime-error）。只有执行到变量的声明语句时，该变量才会从暂时性死区内被移除并可以安全使用。" class="headerlink" title="当JS 引擎检视接下来的代码块并发现变量声明时，它会在面对 var 的情况下将声明提升到函数或全局作用域的顶部，而面对 let 或 const 时会将声明放在暂时性死区内。任何在暂时性死区内访问变量的企图都会导致“运行时”错误（runtime error）。只有执行到变量的声明语句时，该变量才会从暂时性死区内被移除并可以安全使用。"></a>当JS 引擎检视接下来的代码块并发现变量声明时，它会在面对 var 的情况下将声明提升到函数或全局作用域的顶部，而面对 let 或 const 时会将声明放在暂时性死区内。任何在暂时性死区内访问变量的企图都会导致“运行时”错误（runtime error）。只有执行到变量的声明语句时，该变量才会从暂时性死区内被移除并可以安全使用。</h4><p>###循环中的块级绑定<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (var i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">process(items[i]);</span><br><span class="line">&#125;</span><br><span class="line">// i 在此处仍然可被访问</span><br><span class="line">console.log(i); // 10</span><br></pre></td></tr></table></figure></p>
+<p>输出的结果并不是预期的值而是10;是因为var声明导致的变量的提升。聪明的你肯定会想到使用块级绑定来进行变量声明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (let i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">process(items[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(i);</span><br></pre></td></tr></table></figure></p>
+<p>i在此处是不是会正常输出呢，其实不会，在这个例子中会导致报错，为什么呢？因为i在此处不可访问。本例中的变量 i 仅在 for 循环内部可用，一旦循环结束，该变量在任意位置都不可访问。</p>
+<p>我们在来看看一下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var funcs = [];</span><br><span class="line">for (var i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">funcs.push(function() &#123; console.log(i); &#125;);</span><br><span class="line">&#125;</span><br><span class="line">funcs.forEach(function(func) &#123;</span><br><span class="line">func(); // 输出数值 &quot;10&quot; 十次</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>你原本可能预期这段代码会输出 0 到 9 的数值，但它却在同一行将数值 10 输出了十次。这是<br>因为变量 i 在循环的每次迭代中都被共享了，意味着循环内创建的那些函数都拥有对于同一<br>变量的引用。在循环结束后，变量 i 的值会是 10 ，因此当 console.log(i) 被调用时，<br>每次都打印出 10 。</p>
+<p>为了修正这个问题，开发者在循环内使用立即调用函数表达式（IIFEs），以便在每次迭代中<br>强制创建变量的一个新副本，示例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var funcs = [];</span><br><span class="line">for (var i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">funcs.push((function(value) &#123;</span><br><span class="line">return function() &#123;</span><br><span class="line">console.log(value);</span><br><span class="line">&#125;</span><br><span class="line">&#125;(i)));</span><br><span class="line">&#125;</span><br><span class="line">funcs.forEach(function(func) &#123;</span><br><span class="line">func(); // 从 0 到 9 依次输出</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>###循环内的 let 声明<br>let 声明通过有效模仿上例中 IIFE 的作用而简化了循环。在每次迭代中，都会创建一个新的<br>同名变量并对其进行初始化。这意味着你可以完全省略 IIFE 而获得预期的结果，就像这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var funcs = [];</span><br><span class="line">for (let i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">funcs.push(function() &#123;</span><br><span class="line">console.log(i);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br><span class="line">funcs.forEach(function(func) &#123;</span><br><span class="line">func(); // 从 0 到 9 依次输出</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>我们是否会想到这个问题：为什么同样的代码使用let声明会导致不一样的结果呢?<br><strong>在循环中let声明每次都创建了一个新的i变量，因此在循环内部创建的函数获得了各自的i副本,而每个i副本的值都会在每次的循环迭代声明变量的时候确定了</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var funcs = [],</span><br><span class="line">object = &#123;</span><br><span class="line">a: true,</span><br><span class="line">b: true,</span><br><span class="line">c: true</span><br><span class="line">&#125;;</span><br><span class="line">for (let key in object) &#123;</span><br><span class="line">funcs.push(function() &#123;</span><br><span class="line">console.log(key);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br><span class="line">funcs.forEach(function(func) &#123;</span><br><span class="line">func(); // 依次输出 &quot;a&quot;、 &quot;b&quot;、 &quot;c&quot;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>本例中的 for-in 循环体现出了与 for 循环相同的行为。每次循环，一个新的 key 变量绑<br>定就被创建，因此每个函数都能够拥有它自身的 key 变量副本，结果每个函数都输出了一个<br>不同的值。而如果使用 var 来声明 key ，则所有函数都只会输出 “c” 。<br><strong>let 声明在循环内部的行为是在规范中特别定义的，而与不提升变<br>量声明的特征没有必然联系。事实上，在早期 let 的实现中并没有这种行为，它是后来<br>才添加的。</strong></p>
+<p>###循环内的常量声明<br>虽然es6没有明确的规范我们不能在for循环中使用const声明，然而它会根据循环方式的不同而有不同的行为,我们可以在初始化时使用const，但是当循环试图改变变量的值的时候会抛出错误,例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var funcs = [];</span><br><span class="line">// 在一次迭代后抛出错误</span><br><span class="line">for (const i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">funcs.push(function() &#123;</span><br><span class="line">console.log(i);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在此代码中， i 被声明为一个常量。循环的第一次迭代成功执行，此时 i 的值为 0 。在<br>i++ 执行时，一个错误会被抛出，因为该语句试图更改常量的值。因此，在循环中你只能使<br>用 const 来声明一个不会被更改的变量<br>而另一方面， const 变量在 for-in 或 for-of 循环中使用时，与 let 变量效果相同。因<br>此下面代码不会导致出错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var funcs = [],</span><br><span class="line">object = &#123;</span><br><span class="line">a: true,</span><br><span class="line">b: true,</span><br><span class="line">c: true</span><br><span class="line">&#125;;</span><br><span class="line">// 不会导致错误</span><br><span class="line">for (const key in object) &#123;</span><br><span class="line">funcs.push(function() &#123;</span><br><span class="line">console.log(key);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br><span class="line">funcs.forEach(function(func) &#123;</span><br><span class="line">func(); // 依次输出 &quot;a&quot;、 &quot;b&quot;、 &quot;c&quot;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这段代码与“循环内的 let 声明”小节的第二个例子几乎完全一样，唯一的区别是 key 的值在<br>循环内不能被更改。 const 能够在 for-in 与 for-of 循环内工作，是因为循环为每次迭<br>代创建了一个新的变量绑定，而不是试图去修改已绑定的变量的值（就像使用了 for 而不是<br>for-in 的上个例子那样）。</p>
+<p>###全局块级绑定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let 与 const 不同于 var 的另一个方面是在全局作用域上的表现。当在全局作用域上使</span><br><span class="line">用 var 时，它会创建一个新的全局变量，并成为全局对象（在浏览器中是 window ）的一</span><br><span class="line">个属性。</span><br></pre></td></tr></table></figure>
+<p>###总结</p>
+<p>####let和const块级作用域的引入，能够使我们减少很多无心的错误，它们的一个副作用，是不能在变量声明位置之前访问它们</p>
+<p>####块级绑定当前的最佳实践就是：在默认情况下使用 const ，而只在你知道变量值需要被更改的情况下才使用 let 。这在代码中能确保基本层次的不可变性，有助于防止某些类型的错误。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/28/webpack/" rel="next" title="webpack">
+                <i class="fa fa-chevron-left"></i> webpack
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">小汪同学</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量声明一直是js工作中最微妙的一部分，它不像C语言一样，变量总是在被它创建的时候声明，js语言可以允许你在你需要声明变量的时候进行声明。"><span class="nav-number">1.</span> <span class="nav-text">变量声明一直是js工作中最微妙的一部分，它不像C语言一样，变量总是在被它创建的时候声明，js语言可以允许你在你需要声明变量的时候进行声明。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#当我们使用var关键字进行变量声明的时候，无论变量声明的位置在哪里，都会被是为声明于所在的函数的顶部（如果不在函数内的话，则视为在全局作用域的顶部-这就是所谓的变量提升-hoisting"><span class="nav-number">1.1.</span> <span class="nav-text">当我们使用var关键字进行变量声明的时候，无论变量声明的位置在哪里，都会被是为声明于所在的函数的顶部（如果不在函数内的话，则视为在全局作用域的顶部)这就是所谓的变量提升(hoisting)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#a变量被声明了两次：一次使用-var-，另一次使用-let-。因为-let-不能在同一作用域内重复声明一个已有标识符，此处的-let-声明就会抛出错误。另一方面，在嵌套的作用域内使用-let-声明一个同名的新变量，则不会抛出错误，以下代码对此进行了演示："><span class="nav-number">1.2.</span> <span class="nav-text">a变量被声明了两次：一次使用 var ，另一次使用 let 。因为 let 不能在同一作用域内重复声明一个已有标识符，此处的 let 声明就会抛出错误。另一方面，在嵌套的作用域内使用 let 声明一个同名的新变量，则不会抛出错误，以下代码对此进行了演示：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#当JS-引擎检视接下来的代码块并发现变量声明时，它会在面对-var-的情况下将声明提升到函数或全局作用域的顶部，而面对-let-或-const-时会将声明放在暂时性死区内。任何在暂时性死区内访问变量的企图都会导致“运行时”错误（runtime-error）。只有执行到变量的声明语句时，该变量才会从暂时性死区内被移除并可以安全使用。"><span class="nav-number">1.3.</span> <span class="nav-text">当JS 引擎检视接下来的代码块并发现变量声明时，它会在面对 var 的情况下将声明提升到函数或全局作用域的顶部，而面对 let 或 const 时会将声明放在暂时性死区内。任何在暂时性死区内访问变量的企图都会导致“运行时”错误（runtime error）。只有执行到变量的声明语句时，该变量才会从暂时性死区内被移除并可以安全使用。</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小汪同学</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
