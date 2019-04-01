@@ -229,6 +229,194 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/01/箭头函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小汪同学">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="清风寮">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/01/箭头函数/" itemprop="url">箭头函数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-01T11:53:07+08:00">
+                2019-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>##箭头函数<br>es6的箭头函数，顾名思义箭头函数是使用一个箭头( =&gt; )来定义的函数,这很容易理解但是它有很多行为与传统的js函数不同:</p>
+<ul>
+<li>没有 this 、 super 、 arguments 。</li>
+<li>不能被使用 new 调用： 箭头函数没有 [[Construct]] 方法，因此不能被用为构造函数，使用 new 调用箭头函数会抛出错误。</li>
+<li>没有原型： 既然不能对箭头函数使用 new ，那么它也不需要原型，也就是没有prototype 属性。</li>
+<li>不能更改 this ： this 的值在函数内部不能被修改，在函数的整个生命周期内其值会保持不变。</li>
+<li>没有 arguments 对象： 既然箭头函数没有 arguments 绑定，你必须依赖于具名参数或剩余参数来访问函数的参数</li>
+<li>不允许重复的具名参数： 箭头函数不允许拥有重复的具名参数，无论是否在严格模式下；而相对来说，传统函数只有在严格模式下才禁止这种重复</li>
+</ul>
+<p>##箭头函数的语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var reflect = value =&gt; value;</span><br><span class="line">// 有效等价于：</span><br><span class="line">var reflect = function(value) &#123;</span><br><span class="line">return value;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>函数需要传入多个参数:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var sum = (num1, num2) =&gt; num1 + num2;</span><br><span class="line">// 有效等价于：</span><br><span class="line">var sum = function(num1, num2) &#123;</span><br><span class="line">return num1 + num2;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>如果函数没有任何参数，那么在声明时就必须使用一对空括号，就像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var getName = () =&gt; &quot;Nicholas&quot;;</span><br><span class="line">// 有效等价于：</span><br><span class="line">var getName = function() &#123;</span><br><span class="line">return &quot;Nicholas&quot;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>你基本可以将花括号内部的代码当做传统函数那样对待，除了 arguments 对象不可用之外。<br>若你想创建一个空函数，就必须使用空的花括号，就像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var doNothing = () =&gt; &#123;&#125;;</span><br><span class="line">// 有效等价于：</span><br><span class="line">var doNothing = function() &#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>花括号被用于表示函数的主体，它在你至今看到的例子中都工作正常。但若箭头函数想要从<br>函数体内向外返回一个对象字面量，就必须将该字面量包裹在圆括号内，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var getTempItem = id =&gt; (&#123; id: id, name: &quot;Temp&quot; &#125;);</span><br><span class="line">// 有效等价于：</span><br><span class="line">var getTempItem = function(id) &#123;</span><br><span class="line">return &#123;</span><br><span class="line">id: id,</span><br><span class="line">name: &quot;Temp&quot;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>###没有this绑定<br>JS 最常见的错误领域之一就是在函数内的 this 绑定。由于一个函数内部的 this 值可以<br>被改变，这取决于调用该函数时的上下文，因此完全可能错误地影响了一个对象，尽管你本<br>意是要修改另一个对象。<br>箭头函数没有 this 绑定，意味着箭头函数内部的 this 值只能通过查找作用域链来确定。<br>如果箭头函数被包含在一个非箭头函数内，那么 this 值就会与该函数的相等；否则，<br>this 值就会是全局对象（在浏览器中是 window ，在 nodejs 中是 global ）。</p>
+<p>###没有arguments绑定<br>尽管箭头函数没有自己的 arguments 对象，但仍然能访问包含它的函数的 arguments 对<br>象。无论此后箭头函数在何处执行，该对象都是可用的。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function createArrowFunctionReturningFirstArg() &#123;</span><br><span class="line">return () =&gt; arguments[0];</span><br><span class="line">&#125;</span><br><span class="line">var arrowFunction = createArrowFunctionReturningFirstArg(5);</span><br><span class="line">console.log(arrowFunction()); // 5</span><br></pre></td></tr></table></figure></p>
+<p>####也像对其他函数那样，你仍然可以对箭头函数使用 call() 、 apply() 与 bind() 方法，虽<br>然函数的 this 绑定并不会受影响。这里有几个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var sum = (num1, num2) =&gt; num1 + num2;</span><br><span class="line">console.log(sum.call(null, 1, 2)); // 3</span><br><span class="line">console.log(sum.apply(null, [1, 2])); // 3</span><br><span class="line">var boundSum = sum.bind(null, 1, 2);</span><br><span class="line">console.log(boundSum()); // 3</span><br></pre></td></tr></table></figure></p>
+<p>###尾调用优化<br>在 ES6 中对函数最有趣的改动或许就是一项引擎优化，它改变了尾部调用的系统。尾调用（<br>tail call ）指的是调用函数的语句是另一个函数的最后语句，就像这样:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function doSomething() &#123;</span><br><span class="line">return doSomethingElse(); // 尾调用</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在 ES5 引擎中实现的尾调用，其处理就像其他函数调用一样：一个新的栈帧（ stack frame<br>）被创建并推到调用栈之上，用于表示该次函数调用。这意味着之前每个栈帧都被保留在内<br>存中，当调用栈太大时会出问题。</p>
+<p>那什么时候不会被优化呢/</p>
+<ul>
+<li><p>一个小改动——不返回结果(缺少return)，就会产生一个无法被优化的函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line">function doSomething() &#123;</span><br><span class="line">// 未被优化：缺少 return</span><br><span class="line">doSomethingElse();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果你的函数在尾调用返回结果之后进行了额外操作，那么该函数也无法被优化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line">function doSomething() &#123;</span><br><span class="line">// 未被优化：在返回之后还要执行加法</span><br><span class="line">return 1 + doSomethingElse();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭优化的另一个常见方式，是将函数调用的结果储存在一个变量上，之后才返回了结果，就像这样：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line">function doSomething() &#123;</span><br><span class="line">// 未被优化：调用并不在尾部</span><br><span class="line">var result = doSomethingElse();</span><br><span class="line">return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>本例之所以不能被优化，是因为 doSomethingElse() 的值并没有立即被返回。</p>
+<ul>
+<li>使用闭包或许就是需要避免的最困难情况，因为闭包能够访问上层作用域的变量，会导致尾调用优化被关闭。例如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line">function doSomething() &#123;</span><br><span class="line">var num = 1,</span><br><span class="line">func = () =&gt; num;</span><br><span class="line">// 未被优化：此函数是闭包</span><br><span class="line">return func();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>“use strict”;<br>function doSomething() {<br>var num = 1,<br>func = () =&gt; num;<br>// 未被优化：此函数是闭包<br>return func();<br>}<br><code>`</code><br>此例中闭包 func() 需要访问局部变量 num ，虽然调用 func() 后立即返回了其结果，但<br>是对于 num 的引用导致优化不会发生.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/全理解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1075,6 +1263,163 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/节流/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小汪同学">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="清风寮">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/20/节流/" itemprop="url">节流</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-20T22:07:07+08:00">
+                2019-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>throttle 的中心思想在于：在某段时间内，不管你触发了多少次回调，我都只认第一次，并在计时结束时给予响应。</p>
+<p>先给大家讲个小故事：现在有一个旅客刚下了飞机，需要用车，于是打电话叫了该机场唯一的一辆机场大巴来接。司机开到机场，心想来都来了，多接几个人一起走吧，这样这趟才跑得值——我等个十分钟看看。于是司机一边打开了计时器，一边招呼后面的客人陆陆续续上车。在这十分钟内，后面下飞机的乘客都只能乘这一辆大巴，十分钟过去后，不管后面还有多少没挤上车的乘客，这班车都必须发走。</p>
+<p>在这个故事里，“司机” 就是我们的节流阀，他控制发车的时机；“乘客”就是因为我们频繁操作事件而不断涌入的回调任务，它需要接受“司机”的安排；而“计时器”，就是我们上文提到的以自由变量形式存在的时间信息，它是“司机”决定发车的依据；最后“发车”这个动作，就对应到回调函数的执行。</p>
+<p>总结下来，所谓的“节流”，是通过在一段时间内无视后来产生的回调请求来实现的。只要一位客人叫了车，司机就会为他开启计时器，一定的时间内，后面需要乘车的客人都得排队上这一辆车，谁也无法叫到更多的车。</p>
+<p>对应到实际的交互上是一样一样的：每当用户触发了一次 scroll 事件，我们就为这个触发操作开启计时器。一段时间内，后续所有的 scroll 事件都会被当作“一辆车的乘客”——它们无法触发新的 scroll 回调。直到“一段时间”到了，第一次触发的 scroll 事件对应的回调才会执行，而“一段时间内”触发的后续的 scroll 回调都会被节流阀无视掉。</p>
+<p>理解了大致的思路，我们现在一起实现一个 throttle：</p>
+<p>// fn是我们要包装的回调函数事件，Interval是我们要传入的时间间隔<br>function throttle(fn, Interval) {<br>// 记录上一次调用的时间；<br>    let last = 0;<br>    return function() {<br>        // 保存上下文的this<br>        let context = this<br>        // 保存传入的参数<br>        let args = arguments;<br>        // 保存调用时的时间;<br>        let now = + new Date;<br>        // 判断上一次调用时间和当前调用时间对比<br>        if (now - last &gt; Interval) {<br>        // 更新最后一次调用时间;<br>            last = now;<br>            fn.apply(context, args);<br>        }<br>    }<br>}<br>// 用throttle来包装scroll的回调<br>let better_scroll = throttle(() =&gt; {console.log(‘触发了滚动事件’), 1000});<br>document.addEventListener(‘scroll’, better_scroll);</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/懒加载/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1405,163 +1750,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/节流/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小汪同学">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="清风寮">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/20/节流/" itemprop="url">节流</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-20T22:07:07+08:00">
-                2019-03-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>throttle 的中心思想在于：在某段时间内，不管你触发了多少次回调，我都只认第一次，并在计时结束时给予响应。</p>
-<p>先给大家讲个小故事：现在有一个旅客刚下了飞机，需要用车，于是打电话叫了该机场唯一的一辆机场大巴来接。司机开到机场，心想来都来了，多接几个人一起走吧，这样这趟才跑得值——我等个十分钟看看。于是司机一边打开了计时器，一边招呼后面的客人陆陆续续上车。在这十分钟内，后面下飞机的乘客都只能乘这一辆大巴，十分钟过去后，不管后面还有多少没挤上车的乘客，这班车都必须发走。</p>
-<p>在这个故事里，“司机” 就是我们的节流阀，他控制发车的时机；“乘客”就是因为我们频繁操作事件而不断涌入的回调任务，它需要接受“司机”的安排；而“计时器”，就是我们上文提到的以自由变量形式存在的时间信息，它是“司机”决定发车的依据；最后“发车”这个动作，就对应到回调函数的执行。</p>
-<p>总结下来，所谓的“节流”，是通过在一段时间内无视后来产生的回调请求来实现的。只要一位客人叫了车，司机就会为他开启计时器，一定的时间内，后面需要乘车的客人都得排队上这一辆车，谁也无法叫到更多的车。</p>
-<p>对应到实际的交互上是一样一样的：每当用户触发了一次 scroll 事件，我们就为这个触发操作开启计时器。一段时间内，后续所有的 scroll 事件都会被当作“一辆车的乘客”——它们无法触发新的 scroll 回调。直到“一段时间”到了，第一次触发的 scroll 事件对应的回调才会执行，而“一段时间内”触发的后续的 scroll 回调都会被节流阀无视掉。</p>
-<p>理解了大致的思路，我们现在一起实现一个 throttle：</p>
-<p>// fn是我们要包装的回调函数事件，Interval是我们要传入的时间间隔<br>function throttle(fn, Interval) {<br>// 记录上一次调用的时间；<br>    let last = 0;<br>    return function() {<br>        // 保存上下文的this<br>        let context = this<br>        // 保存传入的参数<br>        let args = arguments;<br>        // 保存调用时的时间;<br>        let now = + new Date;<br>        // 判断上一次调用时间和当前调用时间对比<br>        if (now - last &gt; Interval) {<br>        // 更新最后一次调用时间;<br>            last = now;<br>            fn.apply(context, args);<br>        }<br>    }<br>}<br>// 用throttle来包装scroll的回调<br>let better_scroll = throttle(() =&gt; {console.log(‘触发了滚动事件’), 1000});<br>document.addEventListener(‘scroll’, better_scroll);</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/防抖/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1719,159 +1907,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/15/first/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小汪同学">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="清风寮">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/15/first/" itemprop="url">first</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-15T11:29:31+08:00">
-                2019-03-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="first-article"><a href="#first-article" class="headerlink" title="first article"></a>first article</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1915,7 +1957,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
